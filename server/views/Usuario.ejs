@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--HEAD-->
+
+<%- include('./partials/head.ejs')  %> 
+    <title>Perfil de usuario</title>
+    <!--HOJA DE ESTILO-->
+    <link href="/css/styles.css" rel="stylesheet">
+</head>
+<!--BODY-->
+<body>
+    <!--HEADER-->
+    <%- include('./partials/header.ejs')  %> 
+    <!--MAIN -->
+    <main>
+        <div class="container">
+            <div class="titulo">
+                <h2>Perfil de usuario</h2>
+            </div>    
+            <div class="card">
+                <div class="card__header">
+                    <img src="<%=user.imagen %> "  alt="imagen-perfil" class="card__header--user"> 
+                </div>
+                <div class="card__body">
+                    <h4 class="card_text"> <%= user.nombre %> <%= user.apellido %>  
+                        <span class="card__text card__text--light"><%= user.edad %> años</span>
+                    </h4>
+                    <h4 class="card__text card__text--light"> <%= user.pais %> </h4>
+                    <h4 class="card__text card__text--light"> <%= user.email %> </h4>
+                    <% if(user.tipo_usuario == 1) { %>
+                        <h4 class="card__text card__text--light">Usuario Administrador</h4>
+                    <% }else { %>
+                        <h4 class="card__text card__text--light">Usuario Cliente</h4>
+                    <% } %>
+                </div>
+                <div class="card__footer">
+                    <div class="card__stats">
+                        <h4 class="card__number">7</h4>
+                            <% if(user.tipo_usuario == 1) { %>
+                                <h4 class="card__text card__text--light">Ventas</h4>
+                            <% }else { %>
+                                <h4 class="card__text card__text--light">Compras</h4>
+                            <% } %>
+                    </div>
+                    <div class="card__stats">
+                        <h4 class="card__number">21</h4>
+                        <h4 class="card__text card__text--light">Interacciones</h4>
+                    </div>
+                    <div class="card__stats">
+                        <button ><a href="/user/editar/<%= user.usuario_id %>/">Editar usuario </a></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+<!-- SUSCRIPCION + FOOTER + COPIRIGHT-->
+<%- include('./partials/footer.ejs')  %>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--HEAD-->
+<%- include('./partials/head.ejs')  %> 
+    <title>Registro</title>
+    <!--HOJA DE ESTILO-->
+    <link href="/css/styles.css" rel="stylesheet">
+    <link href="/css/form.css" rel="stylesheet">
+</head>
+<body>
+    <!--HEADER-->
+    <%- include('./partials/header.ejs')  %> 
+    <!--MAIN -->
+    <main class="register">
+        <!--MENSAJE DE ERROR EN CASO QUE FALTE COMPLETAR UN CAMPO O HAYA UN ERROR EN LOS CAMPOS INGRESADOS-->
+        <section class="errores">
+            <% if (locals.errors) { %>
+                <% errors.forEach(error => { %>
+                    <p><%= error.msg %> </p> 
+                <% }) %>
+            <% } %>
+        </section>          
+        <!--FORMULARIO DE REGISTRO DE USUARIO-->
+        <form action="/user/registro/" method="POST" class="form-register" id="form-register" enctype="multipart/form-data">
+            <h1 class="login">REGISTRO</h1>
+            <div class="div-form-register">
+                <!-- NOMBRE -->
+                <div class="group-register" id="grupo-nombre">
+                    <input required type="text" class="input-text" id="nombre" name="nombre"><span class="barra"></span>
+                    <label for="nombre" class="lbl-text">Nombre</label>
+                    <p class="formularioInputError">Ingrese su nombre. No ingrese numeros o caracteres especiales.</p>
+                    <i class="formularioValidacionEstado fa-solid fa-circle-xmark"></i>
+                    
+                </div>
+
+                <!-- APELLIDO -->
+                <div class="group-register" id="grupo-apellido">
+                    <input required type="text" class="input-text" id="apellido" name="apellido"><span class="barra"></span>
+                    <label for="apellido" class="lbl-text">Apellido</label>
+                    <p class="formularioInputError">Ingrese su apellido. No ingrese numeros o caracteres especiales.</p>
+                    <i class="formularioValidacionEstado fa-solid fa-circle-xmark"></i>
+                </div>
+
+                <!-- DIRECCION -->
+                <div class="group-register" id="grupo-direccion">
+                    <input required type="text" class="input-text" id="direccion" name="direccion"><span class="barra"></span>
+                    <label for="direccion" class="lbl-text">Direccion</label>
+                    <i class="formularioValidacionEstado fa-solid fa-circle-xmark"></i>
+                    <p class="formularioInputError">Ingrese su dirección.</p>
+                </div>
+                <div class="group-register" id="grupo-localidad">
+                    <input required type="text" class="input-text" id="localidad" name="localidad"><span class="barra"></span>
+                    <label for="localidad" class="lbl-text">Localidad</label>
+                    <i class="formularioValidacionEstado fa-solid fa-circle-xmark"></i>
+                    <p class="formularioInputError">Ingrese la localidad.</p>
+                </div>
+                <div class="group-register" id="grupo-pais">
+                    <input required type="text" class="input-text" id="pais" name="pais"><span class="barra"></span>
+                    <label for="pais" class="lbl-text">Pais</label>
+                    <i class="formularioValidacionEstado fa-solid fa-circle-xmark"></i>
+                    <p class="formularioInputError">Ingrese el País.</p>
+                </div>
+
+                <!-- EDAD -->
+                <div class="group-register" id="grupo-edad">
+                    <input required type="number" class="input-text" id="edad" name="edad"><span class="barra"></span>
+                    <label for="edad" class="lbl-text">Edad</label>
+                    <i class="formularioValidacionEstado fa-solid fa-circle-xmark"></i>
+                    <p class="formularioInputError">Ingrese su edad. Debe ser mayor de 18 años.</p>
+                </div>
+
+                <!-- CORREO ELECTRONICO -->
+                <div class="group-register" id="grupo-email">
+                    <input required type="email" class="input-text" id="mail" name="email"><span class="barra"></span>
+                    <label for="mail" class="lbl-text">Correo Electronico</label>
+                    <i class="formularioValidacionEstado fa-solid fa-circle-xmark"></i>
+                    <p class="formularioInputError">Ingrese un correo electrónico valido.</p>
+                </div>
+
+                <!-- USUARIO -->
+                <div class="group-register" id="grupo-usuario">
+                    <input required type="text" class="input-text" id="usuario" name="usuario"><span class="barra"></span>
+                    <label for="usuario" class="lbl-text">Nombre de Usuario</label>
+                    <i class="formularioValidacionEstado fa-solid fa-circle-xmark"></i>
+                    <p class="formularioInputError">Ingrese un nombre de usuario entre 8 y 20 caracteres.</p>
+                </div>
+
+                <!-- TIPO DE USUARIO -->
+                <div class="tipo-usuario" >
+                    <label for="tipoUsuario" class="lbl-text-tipo">Tipo de Usuario</label>
+                    <select name="tipoUsuario" id="11" class="tipoUsuario">
+                        <option value="1">Administrador</option>
+                        <option value="2">Cliente</option>
+                    </select>
+                </div>
+
+                <!-- CONTRASENA -->
+                <div class="group-register" id="grupo-contrasenia">
+                    <input required type="password" class="input-text" id="contrasenia" name="contrasenia"><span class="barra"></span>
+                    <label for="contrasenia" class="lbl-text">Contraseña</label>
+                    <i class="formularioValidacionEstado fa-solid fa-circle-xmark"></i>
+                    <p class="formularioInputError">Ingrese una contraseña entre 8 y 20 dígitos.</p>
+                </div>
+
+                <!-- CONFIRMAR CONTRASENA -->
+                <div class="group-register" id="grupo-repetirContrasenia">
+                    <input required type="password" class="input-text" id="repetirContrasenia" name="repetirContrasenia"><span class="barra"></span>
+                    <label for="repetirContrasenia" class="lbl-text">Repetir Contraseña</label>
+                    <i class="formularioValidacionEstado fa-solid fa-circle-xmark"></i>
+                    <p class="formularioInputError">Ambas contraseñas deben ser iguales.</p>
+                </div>
+
+                <div class="group-register" id="cargar-imagen">
+                    <input type="file" accept="image/png,image/jpeg" class="input-img" id="foto" name="img">
+                </div>
+            </div>
+            <div class="formularioMensaje" id="formularioMensaje">
+                <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor rellena el formulario correctamente. </p>
+            </div>
+                <button type="submit">Registrarse</button>
+        </form>
+    </main>
+    <script src="/validations/registro.js"></script>
+<!-- SUSCRIPCION + FOOTER + COPIRIGHT-->
+<%- include('./partials/footer.ejs')  %>

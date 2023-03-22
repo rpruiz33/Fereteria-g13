@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<!--HEAD-->
+<%- include('./partials/head.ejs')  %> 
+    <title>Producto</title>
+    <!--HOJA DE ESTILO-->
+    <link href="/css/styles.css" rel="stylesheet">
+    <link href="/css/detail.css" rel="stylesheet">
+</head>
+<!--BODY-->
+<body>
+    <!--HEADER-->
+    <%- include('./partials/header.ejs')  %> 
+    <!--MAIN -->
+    <main>
+        <div class="grande">
+            <div class="titulo3">
+                <h3 class="titulo1"><i class="fa-solid fa-dolly"></i>  Producto  : <%=producto.nombre %>  </h3>
+            </div>
+            <section class="foto">
+                <div class="productos">
+                    <img src="<%= producto.imagen %> "  alt="productoimage">
+                </div>
+            </section>
+            <div class="descripcion">
+                
+                <div class ="precio">
+                    <p>precio: $ <%=producto.precio %></p>
+                </div>
+                
+                <div class ="precio">
+                    <p>stock: <%= producto.stock %> </p>
+                </div>  
+                <div class ="precio">
+                    <p>descuento: %<%= producto.descuento %> </p>
+                </div>  
+            </div>          
+            <div class="pos">
+                <div class="boton">
+                  
+                    <a class="boton_personalizado4" href="">Comprar Ahora!!</a>
+                </div>
+                <div >
+                    <form action="/carrito/sumar/<%= producto.id %> " method="POST">
+                        <button class="boton_personalizado4">Agregar al Carrito <i class="ion-ios-cart-outline"></i>
+                    </form>
+                </div>
+                <div class="boton_personalizado4" >
+                    <form action="#">
+                        <label for="lang">Cantidad</label>
+                            <select name="cantidad" >
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                    </form>
+                </div>
+           
+                <% if (locals.isLogged && locals.userLogged.tipo_usuario==1) { %>
+                   
+                    <a href="/productos/editar/<%= producto.producto_id %> " class="boton_personalizado4" class="action-button edit">Editar Producto</a>
+                    <form action="/productos/delete/<%=producto.producto_id%>?_method=DELETE" method="POST" >
+                    <button type="submit"class="boton_personalizado4" >Eliminar Producto</button>
+               
+                <% } %>
+              
+
+                </form>
+            </div>  
+            
+            <div>
+                <section class="ficha-tecnica">
+                    <h3 class="titulo"><i class="fa-solid fa-wrench"></i>  FICHA TECNICA</h3>
+                    <div class="titulo4">
+                    <br>
+                    <p ><u class="descripciones">DESCRIPCIÓN </u>: <%=producto.descripcion  %> </p>
+                    <br>
+                    <p ><u class="descripciones">COLOR </u> : <%= producto.color %>  </p>
+                    <br>
+                    <p><u class="descripciones">MARCA </u> :<%= producto.marca %> </p>
+                    <br>
+                    <p><u class="descripciones">MEDIDAS </u>: <%= producto.tamanio %> </p>
+                    <br>
+                    <p><u class="descripciones">FABRICANTE </u>: <%= producto.fabricante %> </p>
+                    <br>
+                    <p ><u class="descripciones">MODELO </u> : <%= producto.modelo %> </p>
+                    
+                   
+                </div>
+                </section>         
+            </div>
+        </div>       
+    </main>
+<!-- SUSCRIPCION + FOOTER + COPIRIGHT-->
+<%- include('./partials/footer.ejs')  %>
